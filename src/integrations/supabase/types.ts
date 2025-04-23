@@ -11,7 +11,7 @@ export type Database = {
     Tables: {
       clients: {
         Row: {
-          address: string | null
+          city: string
           created_at: string
           email: string | null
           id: string
@@ -20,7 +20,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
-          address?: string | null
+          city: string
           created_at?: string
           email?: string | null
           id?: string
@@ -29,7 +29,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
-          address?: string | null
+          city?: string
           created_at?: string
           email?: string | null
           id?: string
@@ -64,28 +64,15 @@ export type Database = {
           product_id?: string
           quantity?: number
         }
-        Relationships: [
-          {
-            foreignKeyName: "order_items_order_id_fkey"
-            columns: ["order_id"]
-            isOneToOne: false
-            referencedRelation: "orders"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "order_items_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       orders: {
         Row: {
           client_id: string
           created_at: string
           id: string
+          items: Json
+          order_date: string
           status: string
           total: number
           updated_at: string
@@ -94,6 +81,8 @@ export type Database = {
           client_id: string
           created_at?: string
           id?: string
+          items: Json
+          order_date?: string
           status?: string
           total: number
           updated_at?: string
@@ -102,6 +91,8 @@ export type Database = {
           client_id?: string
           created_at?: string
           id?: string
+          items?: Json
+          order_date?: string
           status?: string
           total?: number
           updated_at?: string
